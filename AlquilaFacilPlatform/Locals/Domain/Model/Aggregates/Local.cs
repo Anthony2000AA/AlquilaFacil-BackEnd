@@ -17,11 +17,14 @@ public partial class Local
         Features = string.Empty;
         Capacity = 0;
         UserId = 0;
+        SmokeDetection = false;
+        RestrictedArea = string.Empty;
+        NoiseLevel = null;
     }
-    
-    
-    public Local(string district, string street, string localType, string country, string city, int price, 
-           string photoUrl, string descriptionMessage , int localCategoryId,int userId, string features, int capacity) : this()
+
+    public Local(string district, string street, string localType, string country, string city, int price,
+        string photoUrl, string descriptionMessage, int localCategoryId, int userId, string features, int capacity,
+        double? noiseLevel, bool smokeDetection, string restrictedArea) : this()
     {
         LName = new LocalName(localType);
         Address = new StreetAddress(district, street);
@@ -33,7 +36,9 @@ public partial class Local
         UserId = userId;
         Features = features;
         Capacity = capacity;
-        
+        NoiseLevel = noiseLevel;
+        SmokeDetection = smokeDetection;
+        RestrictedArea = restrictedArea;
     }
 
     public Local(CreateLocalCommand command)
@@ -48,8 +53,10 @@ public partial class Local
         Features = command.Features;
         Capacity = command.Capacity;
         UserId = command.UserId;
+        NoiseLevel = command.NoiseLevel;
+        SmokeDetection = command.SmokeDetection;
+        RestrictedArea = command.RestrictedArea;
     }
-
 
     public void Update(UpdateLocalCommand command)
     {
@@ -66,9 +73,9 @@ public partial class Local
     }
 
     public int Id { get; set; }
-    
+
     public string Features { get; set; }
-    
+
     public int Capacity { get; set; }
     public LocalName LName { get; private set; }
     public NightPrice Price { get; private set; }
@@ -79,7 +86,11 @@ public partial class Local
     public int LocalCategoryId { get; set; }
     public int UserId { get; set; }
 
-    
+    // NUEVOS CAMPOS
+    public double? NoiseLevel { get; set; }
+    public bool SmokeDetection { get; set; }
+    public string RestrictedArea { get; set; }
+
     public string StreetAddress => Address.FullAddress;
     public string LocalName => LName.TypeLocal;
     public int NightPrice => Price.PriceNight;

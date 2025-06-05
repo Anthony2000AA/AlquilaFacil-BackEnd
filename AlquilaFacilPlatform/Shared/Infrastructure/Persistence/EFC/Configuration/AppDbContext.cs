@@ -78,6 +78,22 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Local>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Local>().Property(p => p.Features).IsRequired();
         builder.Entity<Local>().Property(p => p.Capacity).IsRequired();
+        
+        // NUEVOS CAMPOS DIRECTOS EN LA ENTIDAD
+        builder.Entity<Local>().Property(p => p.NoiseLevel)
+            .HasColumnName("NoiseLevel")
+            .HasColumnType("decimal(18,2)")  // o double, según tu modelo
+            .IsRequired(false);              // ← opcional, puede ser null
+
+        builder.Entity<Local>().Property(p => p.SmokeDetection)
+            .HasColumnName("SmokeDetection")
+            .IsRequired();                  // ← bool, no nullable
+
+        builder.Entity<Local>().Property(p => p.RestrictedArea)
+            .HasColumnName("RestrictedArea")
+            .HasMaxLength(255)              // ← define límite si lo deseas
+            .IsRequired(false);             // ← opcional, puede ser null
+        
         builder.Entity<Local>().OwnsOne(p => p.Price,
             n =>
             {

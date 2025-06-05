@@ -74,6 +74,8 @@ builder.Services.AddDbContext<AppDbContext>(
     {
         if (builder.Environment.IsDevelopment())
         {
+            Console.WriteLine("Environment: " + builder.Environment.EnvironmentName);
+
             options.UseMySql(developmentString, ServerVersion.AutoDetect(developmentString))
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()

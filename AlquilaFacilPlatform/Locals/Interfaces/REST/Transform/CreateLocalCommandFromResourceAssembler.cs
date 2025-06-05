@@ -7,7 +7,22 @@ public static class CreateLocalCommandFromResourceAssembler
 {
     public static CreateLocalCommand ToCommandFromResources(CreateLocalResource resource)
     {
-        return new CreateLocalCommand(resource.District, resource.Street, resource.LocalName, resource.Country, resource.City, resource.Price,
-            resource.PhotoUrl, resource.DescriptionMessage, resource.LocalCategoryId,resource.UserId,resource.Features,resource.Capacity);
+        return new CreateLocalCommand(
+            resource.District,
+            resource.Street,
+            resource.LocalName,
+            resource.Country,
+            resource.City,
+            resource.Price,
+            resource.PhotoUrl,
+            resource.DescriptionMessage,
+            resource.LocalCategoryId,
+            resource.UserId,
+            resource.Features,
+            resource.Capacity,
+            resource.NoiseLevel,          // ← nuevo
+            resource.SmokeDetection,      // ← nuevo
+            resource.RestrictedArea       // ← nuevo
+        );
     }
 }

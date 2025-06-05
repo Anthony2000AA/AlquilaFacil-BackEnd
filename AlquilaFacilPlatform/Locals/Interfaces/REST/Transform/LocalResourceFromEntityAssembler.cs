@@ -18,7 +18,10 @@ public static class LocalResourceFromEntityAssembler
             local.LocalCategoryId,
             local.UserId,
             local.Features,
-            local.Capacity
+            local.Capacity,
+            local.NoiseLevel,
+            local.SmokeDetection,
+            local.RestrictedArea
             );
     }
 }
